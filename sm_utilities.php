@@ -2,7 +2,7 @@
  /*
  Plugin Name: sm utilities
  Description: Diverse Tools zum deaktivieren von Menüpunkten
- Version: 1.01
+ Version: 1.02
  Author: Stefan Stiller| stiller media
  Author URI: https://www.stillermedia.de/
 */
@@ -33,14 +33,14 @@ function sm_utilities_install() {
 		$data = array(array("name" => "Gutenberg", "beschreibung" => "Gutenberg Editor deaktivieren", "status" => 1, "befehl" => "", "bereich" => "Allgemein"),
 				array("name" => "UpdateMail", "beschreibung" => "Update Mails deaktivieren", "status" => 1, "befehl" => "", "bereich" => "Allgemein"),
 				array("name" => "Beiträge", "beschreibung" => "Beiträge anzeigen", "status" => 1, "befehl" => "edit.php", "bereich" => "Menü"),
-				array("name" => "Upload", "beschreibung" => "Medien anzeigen", "status" => 1, "befehl" => "upload.php", "bereich" => "Menü"),
-				array("name" => "Edit", "beschreibung" => "Seiten anzeigen", "status" => 1, "befehl" => "edit.php?post_type=page", "bereich" => "Menü"),
+				array("name" => "Medien", "beschreibung" => "Medien anzeigen", "status" => 1, "befehl" => "upload.php", "bereich" => "Menü"),
+				array("name" => "Seiten", "beschreibung" => "Seiten anzeigen", "status" => 1, "befehl" => "edit.php?post_type=page", "bereich" => "Menü"),
 				array("name" => "Themes", "beschreibung" => "Themes anzeigen", "status" => 1, "befehl" => "themes.php", "bereich" => "Menü"),
 				array("name" => "Plugins", "beschreibung" => "Plugins anzeigen", "status" => 1, "befehl" => "plugins.php", "bereich" => "Menü"),
 				array("name" => "User", "beschreibung" => "Benutzer anzeigen", "status" => 1, "befehl" => "users.php", "bereich" => "Menü"),
-				array("name" => "Tools", "beschreibung" => "Werkzeuge anzeigen", "status" => 1, "befehl" => "tools.php", "bereich" => "Menü"),
+				array("name" => "Werkzeuge", "beschreibung" => "Werkzeuge anzeigen", "status" => 1, "befehl" => "tools.php", "bereich" => "Menü"),
 				array("name" => "Kommentare", "beschreibung" => "Kommentare anzeigen", "status" => 1, "befehl" => "edit-comments.php", "bereich" => "Menü"),
-				array("name" => "Options", "beschreibung" => "Einstellungen anzeigen", "status" => 1, "befehl" => "options-general.php", "bereich" => "Menü"),
+				array("name" => "Einstellungen", "beschreibung" => "Einstellungen anzeigen", "status" => 1, "befehl" => "options-general.php", "bereich" => "Menü"),
 				array("name" => "Logo", "beschreibung" => "Wordpress Logo anzeigen", "status" => 1, "befehl" => "wp-logo", "bereich" => "Top"),
 				array("name" => "TopNeu", "beschreibung" => "Neu erstellen im Top Menü anzeigen", "status" => 1, "befehl" => "new-content", "bereich" => "Top"),
 				array("name" => "TopKommentare", "beschreibung" => "Kommentare im Top Menü anzeigen", "status" => 1, "befehl" => "comments", "bereich" => "Top"),
