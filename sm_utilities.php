@@ -1,37 +1,33 @@
 <?php
  /*
- Plugin Name: creandi utilities
+ Plugin Name: sm utilities
  Description: Diverse Tools zum deaktivieren von Menüpunkten
- Version: 1.0
- Author: Stefan Stiller
- Author URI: https://www.creandi.de/
+ Version: 1.01
+ Author: Stefan Stiller| stiller media
+ Author URI: https://www.stillermedia.de/
 */
 
 if ( !defined( 'WPINC' ) ) { die; }
 error_reporting(0);
 
-/**
- * @param int $post_id POST ID
- */
+global $wpdb;
+$GLOBALS['table'] = $wpdb->prefix . "sm_utilities";
 
-function init_crndi_utilities()
-{
-   global $wpdb;
-   $table = $wpdb->prefix . "crndi_utilities";
- 
-   $sql = "CREATE TABLE IF NOT EXISTS " .$table."(
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`name` varchar(255) NOT NULL,
-	`beschreibung` varchar(255) NOT NULL,
-	`befehl` varchar(255) NOT NULL,
-	`bereich` varchar(255) NOT NULL,
-	`status` boolean NOT NULL, PRIMARY KEY (id)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+function sm_utilities_install() {
+	global $wpdb;
+	$sql = "CREATE TABLE IF NOT EXISTS " .$GLOBALS['table']."(
+		`id` int(11) NOT NULL AUTO_INCREMENT,
+		`name` varchar(255) NOT NULL,
+		`beschreibung` varchar(255) NOT NULL,
+		`befehl` varchar(255) NOT NULL,
+		`bereich` varchar(255) NOT NULL,
+		`status` boolean NOT NULL, PRIMARY KEY (id)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 	dbDelta($sql);
 
-	$wpdb->get_results("SELECT *  FROM ".$table);
+	$wpdb->get_results("SELECT *  FROM ".$GLOBALS['table']);
 	
 	if(!$wpdb->num_rows) {
 		$data = array(array("name" => "Gutenberg", "beschreibung" => "Gutenberg Editor deaktivieren", "status" => 1, "befehl" => "", "bereich" => "Allgemein"),
@@ -50,36 +46,33 @@ function init_crndi_utilities()
 				array("name" => "TopKommentare", "beschreibung" => "Kommentare im Top Menü anzeigen", "status" => 1, "befehl" => "comments", "bereich" => "Top"),
 				array("name" => "TopName", "beschreibung" => "Seiten Namen im Tom Menü anzeigen", "status" => 1, "befehl" => "site-name", "bereich" => "Top"));
 				
-		foreach($data as $row){
-			$wpdb->insert($table, $row);
-		}
+		foreach($data as $row){ $wpdb->insert($GLOBALS['table'], $row); }
 	}
 }
-register_activation_hook(__FILE__, 'init_crndi_utilities');
+register_activation_hook(__FILE__, 'sm_utilities_install');
 
-function crndi_utilities_Bknd() {
+function sm_utilities_bkndMain() {
 	add_menu_page(
 		'Utilities',
 		'Utilities',
 		'manage_options',
-		'crndi_utilities_plugin',
-		'crndi_utilities_interface',
+		'sm_utilities_plugin',
+		'sm_utilities_interface',
 		'dashicons-admin-tools',
 		'2'
 	);
 }
-add_action( 'admin_menu', 'crndi_utilities_Bknd' );
+add_action( 'admin_menu', 'sm_utilities_bkndMain' );
 
-function crndi_utilities_interface(){
+function sm_utilities_interface(){
 	include 'php/bknd_settings.php';
 }
 
-function crndi_utilities_allgemein() {
+function sm_utilities_main() {
 	global $wpdb;
-	$table = $wpdb->prefix . "crndi_utilities";
-	$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Allgemein'");
 
-	foreach($functions as $funcion) {
+	$functions = $wpdb->get_results("SELECT *  FROM ".$GLOBALS['table']." WHERE bereich = 'Allgemein'");
+ 	foreach($functions as $funcion) {
 		if($funcion->name == "UpdateMail" && $funcion->status == 0 ) {
 			add_filter( 'auto_plugin_update_send_email', '__return_false' );
 			add_filter( 'auto_theme_update_send_email', '__return_false' );
@@ -91,33 +84,30 @@ function crndi_utilities_allgemein() {
 		}
 	}
 }
-add_action('init', 'crndi_utilities_allgemein');
+add_action('init', 'sm_utilities_main');
 
-function crndi_utilities_menu() {
+function sm_utilities_adminInit() {
 	global $wpdb;
-	$table = $wpdb->prefix . "crndi_utilities";
-	$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Menü'");
 
+	$functions = $wpdb->get_results("SELECT *  FROM ".$GLOBALS['table']." WHERE bereich = 'Menü'");
 	foreach($functions as $funcion) {
 		if($funcion->status == 0) { 
 			remove_menu_page($funcion->befehl); 
 		}
 	}
 }
-add_action('admin_init', 'crndi_utilities_menu');
+add_action('admin_init', 'sm_utilities_adminInit');
 
-function crndi_utilities_top()
-{
+function sm_utilities_adminBar() {
     global $wp_admin_bar;
 	global $wpdb;
-	$table = $wpdb->prefix . "crndi_utilities";
-	$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Top'");
 
+	$functions = $wpdb->get_results("SELECT *  FROM ".$GLOBALS['table']." WHERE bereich = 'Top'");
 	foreach($functions as $funcion) {
 		if($funcion->status == 0) { 
 			$wp_admin_bar->remove_node( $funcion->befehl );
 		}
 	}
 }
-add_action( 'admin_bar_menu', 'crndi_utilities_top', 999 );
+add_action( 'admin_bar_menu', 'sm_utilities_adminBar', 999 );
 ?>
