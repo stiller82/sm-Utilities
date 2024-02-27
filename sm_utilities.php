@@ -13,6 +13,10 @@ error_reporting(0);
 global $wpdb;
 $GLOBALS['table'] = $wpdb->prefix . "sm_utilities";
 
+require_once(plugin_dir_path(__FILE__) . 'functions.php');
+
+
+
 function sm_utilities_install() {
 	global $wpdb;
 	$sql = "CREATE TABLE IF NOT EXISTS " .$GLOBALS['table']."(
