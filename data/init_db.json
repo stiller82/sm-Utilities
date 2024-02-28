@@ -1,0 +1,107 @@
+[
+    {
+        "name": "Gutenberg",
+        "beschreibung": "Gutenberg Editor deaktivieren",
+        "status": 1,
+        "befehl": "",
+        "bereich": "Allgemein"
+    },
+    {
+        "name": "UpdateMail",
+        "beschreibung": "Update Mails deaktivieren",
+        "status": 1,
+        "befehl": "",
+        "bereich": "Allgemein"
+    },
+    {
+        "name": "Beiträge",
+        "beschreibung": "Beiträge anzeigen",
+        "status": 1,
+        "befehl": "edit.php",
+        "bereich": "Menü"
+    },
+    {
+        "name": "Medien",
+        "beschreibung": "Medien anzeigen",
+        "status": 1,
+        "befehl": "upload.php",
+        "bereich": "Menü"
+    },
+    {
+        "name": "Seiten",
+        "beschreibung": "Seiten anzeigen",
+        "status": 1,
+        "befehl": "edit.php?post_type=page",
+        "bereich": "Menü"
+    },
+    {
+        "name": "Themes",
+        "beschreibung": "Themes anzeigen",
+        "status": 1,
+        "befehl": "themes.php",
+        "bereich": "Menü"
+    },
+    {
+        "name": "Plugins",
+        "beschreibung": "Plugins anzeigen",
+        "status": 1,
+        "befehl": "plugins.php",
+        "bereich": "Menü"
+    },
+    {
+        "name": "User",
+        "beschreibung": "Benutzer anzeigen",
+        "status": 1,
+        "befehl": "users.php",
+        "bereich": "Menü"
+    },
+    {
+        "name": "Werkzeuge",
+        "beschreibung": "Werkzeuge anzeigen",
+        "status": 1,
+        "befehl": "tools.php",
+        "bereich": "Menü"
+    },
+    {
+        "name": "Kommentare",
+        "beschreibung": "Kommentare anzeigen",
+        "status": 1,
+        "befehl": "edit-comments.php",
+        "bereich": "Menü"
+    },
+    {
+        "name": "Einstellungen",
+        "beschreibung": "Einstellungen anzeigen",
+        "status": 1,
+        "befehl": "options-general.php",
+        "bereich": "Menü"
+    },
+    {
+        "name": "Logo",
+        "beschreibung": "Wordpress Logo anzeigen",
+        "status": 1,
+        "befehl": "wp-logo",
+        "bereich": "Top"
+    },
+    {
+        "name": "TopNeu",
+        "beschreibung": "Neu erstellen im Top Menü anzeigen",
+        "status": 1,
+        "befehl": "new-content",
+        "bereich": "Top"
+    },
+    {
+        "name": "TopKommentare",
+        "beschreibung": "Kommentare im Top Menü anzeigen",
+        "status": 1,
+        "befehl": "comments",
+        "bereich": "Top"
+    },
+    {
+        "name": "TopName",
+        "beschreibung": "Seiten Namen im Tom Menü anzeigen",
+        "status": 1,
+        "befehl": "site-name",
+        "bereich": "Top"
+    }
+]
