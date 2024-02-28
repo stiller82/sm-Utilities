@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Utilities
 	Description: Diverse Tools zum deaktivieren von Menüpunkten
-	Version: 1.2
+	Version: 1.21
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
 	*/
@@ -16,7 +16,7 @@
 	DataLoader::init('init_db', 'init_db');
 	$GLOBALS['table'] = $wpdb->prefix . "sm_utilities";
 
-	function utilities_install() {
+	function sm_utilities_install() {
 		$sql = "CREATE TABLE IF NOT EXISTS " .$GLOBALS['table']."(
 			`id` int(11) NOT NULL AUTO_INCREMENT,
 			`name` varchar(255) NOT NULL,
@@ -36,7 +36,7 @@
 			}
 		}
 	}
-	register_activation_hook(__FILE__, 'utilities_install');
+	register_activation_hook(__FILE__, 'sm_utilities_install');
 
 	function sm_utilities_bkndMain() {
 		add_menu_page(
