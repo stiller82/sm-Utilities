@@ -20,36 +20,58 @@
   echo '<form action="#" method="post">';
 
   echo '<h2>Allgemein</h2>';
+  echo '<table class="widefat">';
+  echo '<tbody>';
   foreach ($functions as $function) {
     if ($function->bereich == "Allgemein") {
-      echo '<div>';
-      echo '<input type="checkbox" name="' . $function->name . '"' . ($function->status == 1 ? " checked" : "") . '>';
-      echo '<label for="' . $function->name . '">' . $function->name . '</label>';
-      echo '</div>';
+      echo '
+        <tr>
+          <td><input type="checkbox" name="' . $function->name . '"' . ($function->status == 1 ? " checked" : "") . '></td>
+          <td>'. $function->name .'</td>
+          <td>'. $function->beschreibung .'</td>
+        </tr>';
     }
   }
+  echo '</tbody>';
+  echo '</table>';
 
   echo '<h2>Admin Menü</h2>';
+  echo '<table class="widefat">';
+  echo '<tbody>';
   foreach ($functions as $function) {
     if ($function->bereich == "Menü") {
-      echo '<div>';
-      echo '<input type="checkbox" name="' . $function->name . '"' . ($function->status == 1 ? " checked" : "") . '>';
-      echo '<label for="' . $function->name . '">' . $function->name . '</label>';
-      echo '</div>';
+      echo '
+        <tr>
+          <td><input type="checkbox" name="' . $function->name . '"' . ($function->status == 1 ? " checked" : "") . '></td>
+          <td>'. $function->name .'</td>
+          <td>'. $function->beschreibung .'</td>
+        </tr>';
     }
   }
+  echo '</tbody>';
+  echo '</table>';
 
   echo '<h2>Top Menü</h2>';
+  echo '<table class="widefat">';
+  echo '<tbody>';
   foreach ($functions as $function) {
     if ($function->bereich == "Top") {
-      echo '<div>';
-      echo '<input type="checkbox" name="' . $function->name . '"' . ($function->status == 1 ? " checked" : "") . '>';
-      echo '<label for="' . $function->name . '">' . $function->name . '</label>';
-      echo '</div>';
+      echo '
+        <tr>
+          <td><input type="checkbox" name="' . $function->name . '"' . ($function->status == 1 ? " checked" : "") . '></td>
+          <td>'. $function->name .'</td>
+          <td>'. $function->beschreibung .'</td>
+        </tr>';
     }
   }
+  echo '</tbody>';
+  echo '</table>';
 
-  echo '<hr><div>';
+  echo '<hr>';
+  echo '<div">';
   echo '<input type="submit" class="button" name="submit_settings" value="Speichern" />';
-  echo '</div></form>';
+  echo '</div">';
+  echo '</form>';
+  echo '<hr>';
+  echo 'Copyright by stiller media &copy; 2014'
 ?>

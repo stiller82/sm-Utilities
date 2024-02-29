@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Utilities
 	Description: Diverse Tools zum deaktivieren von Menüpunkten
-	Version: 1.21
+	Version: 1.3
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
 	*/
@@ -11,6 +11,8 @@
 	error_reporting(0);
 
 	require_once(plugin_dir_path(__FILE__) . 'functions.php');
+
+	add_action('admin_menu', function() { StylesAndScripts::enqueueFiles(); });
 
 	global $wpdb;
 	DataLoader::init('init_db', 'init_db');
