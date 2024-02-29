@@ -1,7 +1,9 @@
 <?php
+    namespace sm_utilities;
     // Version 1.1
     
-    // add_action('admin_menu', function() { StylesAndScripts::enqueueFiles(); });
+	//$SaS = new \sm_utilities\StylesAndScripts();
+	//add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles(); });
     class StylesAndScripts {
         public static function enqueueFiles() {
             wp_enqueue_style('style', plugin_dir_url(__FILE__) . 'style.css');
@@ -11,7 +13,8 @@
         }
     }
 
-    //DataLoader::init('GLOBALS_FELD_NAME', 'NAME.json');
+	//$DL = new \sm_utilities\DataLoader();
+	//$DL->init('init_db', 'init_db');
     class DataLoader {
         public static function loadData($filename) {
             $json_content = file_get_contents(plugin_dir_path(__FILE__) . 'data/' . $filename .'.json');
