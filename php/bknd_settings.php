@@ -8,13 +8,13 @@
 
       $data = array("status" => $wert);
       $where = array("name" => $function["name"]);
-      $wpdb->update($GLOBALS['table'], $data, $where);
+      $wpdb->update($GLOBALS['utilities_table'], $data, $where);
     }
 
     echo "<meta http-equiv='refresh' content='0'>";
   }
 
-  $functions = $wpdb->get_results("SELECT *  FROM " . $GLOBALS['table']);
+  $functions = $wpdb->get_results("SELECT *  FROM " . $GLOBALS['utilities_table']);
 
   echo '<h1>Utilities</h1>';
   echo '<form action="#" method="post">';
