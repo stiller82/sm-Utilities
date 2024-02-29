@@ -73,5 +73,5 @@
   echo '</div">';
   echo '</form>';
   echo '<hr>';
-  echo 'Copyright by stiller media &copy; 2014'
+  echo '<p>Copyright by stiller media &copy; 2024</p>';
 ?>
