@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Utilities
 	Description: Diverse Tools zum deaktivieren von Menüpunkten
-	Version: 1.41
+	Version: 1.43
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
 	*/
@@ -15,14 +15,20 @@
 	$SaS = new \sm_utilities\StylesAndScripts();
 	add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles(); });
 
-	$DL = new \sm_utilities\DataLoader();
-	$DL->init('init_db', 'init_db');
-
 	global $wpdb;
-	$GLOBALS['utilities_table'] = $wpdb->prefix . "sm_utilities";
+	global $init_db;
+	$DL = new \sm_utilities\DataLoader();
+	$init_db = $DL->loadData('init_db');
+
+	global $table;
+	$table = $wpdb->prefix . "sm_utilities";
 
 	function sm_utilities_install() {
-		$sql = "CREATE TABLE IF NOT EXISTS ".$GLOBALS['utilities_table']."(
+		global $wpdb;
+		global $table;
+		global $init_db;
+
+		$sql = "CREATE TABLE IF NOT EXISTS ".$table."(
 			`id` int(11) NOT NULL AUTO_INCREMENT,
 			`name` varchar(255) NOT NULL,
 			`beschreibung` varchar(255) NOT NULL,
@@ -34,10 +40,10 @@
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
 
-		$wpdb->get_results("SELECT *  FROM ".$GLOBALS['utilities_table']);
+		$wpdb->get_results("SELECT *  FROM ".$table);
 		if(!$wpdb->num_rows) {
-			foreach($GLOBALS['init_db'] as $row){ 
-				$wpdb->insert($GLOBALS['utilities_table'], $row); 
+			foreach($init_db as $row){ 
+				$wpdb->insert($table, $row); 
 			}
 		}
 	}
@@ -58,8 +64,9 @@
 
 	function sm_utilities_main() {
 		global $wpdb;
+		global $table;
 
-		$functions = $wpdb->get_results("SELECT *  FROM ".$GLOBALS['utilities_table']." WHERE bereich = 'Allgemein'");
+		$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Allgemein'");
 		foreach($functions as $funcion) {
 			if($funcion->name == "UpdateMail" && $funcion->status == 0 ) {
 				add_filter( 'auto_plugin_update_send_email', '__return_false' );
@@ -76,8 +83,9 @@
 
 	function sm_utilities_adminInit() {
 		global $wpdb;
+		global $table;
 
-		$functions = $wpdb->get_results("SELECT *  FROM ".$GLOBALS['utilities_table']." WHERE bereich = 'Menü'");
+		$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Menü'");
 		foreach($functions as $funcion) {
 			if($funcion->status == 0) { 
 				remove_menu_page($funcion->befehl); 
@@ -89,8 +97,9 @@
 	function sm_utilities_adminBar() {
 		global $wp_admin_bar;
 		global $wpdb;
+		global $table;
 
-		$functions = $wpdb->get_results("SELECT *  FROM ".$GLOBALS['utilities_table']." WHERE bereich = 'Top'");
+		$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Top'");
 		foreach($functions as $funcion) {
 			if($funcion->status == 0) { 
 				$wp_admin_bar->remove_node( $funcion->befehl );

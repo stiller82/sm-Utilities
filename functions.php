@@ -1,6 +1,6 @@
 <?php
     namespace sm_utilities;
-    // Version 1.1
+    // Version 1.2
     
 	//$SaS = new \sm_utilities\StylesAndScripts();
 	//add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles(); });
@@ -14,15 +14,11 @@
     }
 
 	//$DL = new \sm_utilities\DataLoader();
-	//$DL->init('init_db', 'init_db');
+	//$DL->loadData('init_db');
     class DataLoader {
         public static function loadData($filename) {
             $json_content = file_get_contents(plugin_dir_path(__FILE__) . 'data/' . $filename .'.json');
             return json_decode($json_content, true);
-        }
-    
-        public static function init($feld, $dateiname) {
-            $GLOBALS[$feld] = self::loadData($dateiname);
         }
     }
 ?>

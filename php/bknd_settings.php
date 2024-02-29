@@ -1,20 +1,22 @@
 <?php
-  global $wpdb;
+	global $wpdb;
+	global $table;
+  global $init_db;
 
   if (isset($_POST["submit_settings"])) {
 
-    foreach ($GLOBALS['init_db'] as $function) {
+    foreach ($init_db as $function) {
       $wert = ($_POST[$function["name"]] === "on" ? true : false);
 
       $data = array("status" => $wert);
       $where = array("name" => $function["name"]);
-      $wpdb->update($GLOBALS['utilities_table'], $data, $where);
+      $wpdb->update($table, $data, $where);
     }
 
     echo "<meta http-equiv='refresh' content='0'>";
   }
 
-  $functions = $wpdb->get_results("SELECT *  FROM " . $GLOBALS['utilities_table']);
+  $functions = $wpdb->get_results("SELECT *  FROM " . $table);
 
   echo '<h1>Utilities</h1>';
   echo '<form action="#" method="post">';
