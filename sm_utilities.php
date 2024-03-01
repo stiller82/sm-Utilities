@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Utilities
 	Description: Diverse Tools zum deaktivieren von Menüpunkten
-	Version: 1.43
+	Version: 1.5
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
 	*/
@@ -12,23 +12,30 @@
 
 	require_once(plugin_dir_path(__FILE__) . 'functions.php');
 
-	$SaS = new \sm_utilities\StylesAndScripts();
-	add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles(); });
+	//Klasse zum erzeugen von Globalen Variablen
+	class sm_utilities {
+		public static $table;
+		public static $DL;
+		public static $initDB;
 
-	global $wpdb;
-	global $init_db;
-	$DL = new \sm_utilities\DataLoader();
-	$init_db = $DL->loadData('init_db');
+		public static function init() {
+			global $wpdb;
 
-	global $table;
-	$table = $wpdb->prefix . "sm_utilities";
+			$DL = new \sm_utilities\DataLoader();
+			self::$initDB = $DL->loadData('init_db');
+
+			self::$table = $wpdb->prefix . "sm_utilities";
+
+			$SaS = new \sm_utilities\StylesAndScripts();
+			add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles(); });
+		}
+	}
+	add_action('init', array('sm_utilities', 'init'));
 
 	function sm_utilities_install() {
 		global $wpdb;
-		global $table;
-		global $init_db;
 
-		$sql = "CREATE TABLE IF NOT EXISTS ".$table."(
+		$sql = "CREATE TABLE IF NOT EXISTS ".sm_utilities::$table."(
 			`id` int(11) NOT NULL AUTO_INCREMENT,
 			`name` varchar(255) NOT NULL,
 			`beschreibung` varchar(255) NOT NULL,
@@ -40,10 +47,10 @@
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
 
-		$wpdb->get_results("SELECT *  FROM ".$table);
+		$wpdb->get_results("SELECT *  FROM ".sm_utilities::$table);
 		if(!$wpdb->num_rows) {
-			foreach($init_db as $row){ 
-				$wpdb->insert($table, $row); 
+			foreach(sm_utilities::$initDB as $row){ 
+				$wpdb->insert(sm_utilities::$table, $row); 
 			}
 		}
 	}
@@ -64,9 +71,8 @@
 
 	function sm_utilities_main() {
 		global $wpdb;
-		global $table;
 
-		$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Allgemein'");
+		$functions = $wpdb->get_results("SELECT *  FROM ".sm_utilities::$table." WHERE bereich = 'Allgemein'");
 		foreach($functions as $funcion) {
 			if($funcion->name == "UpdateMail" && $funcion->status == 0 ) {
 				add_filter( 'auto_plugin_update_send_email', '__return_false' );
@@ -83,9 +89,8 @@
 
 	function sm_utilities_adminInit() {
 		global $wpdb;
-		global $table;
 
-		$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Menü'");
+		$functions = $wpdb->get_results("SELECT *  FROM ".sm_utilities::$table." WHERE bereich = 'Menü'");
 		foreach($functions as $funcion) {
 			if($funcion->status == 0) { 
 				remove_menu_page($funcion->befehl); 
@@ -97,9 +102,8 @@
 	function sm_utilities_adminBar() {
 		global $wp_admin_bar;
 		global $wpdb;
-		global $table;
 
-		$functions = $wpdb->get_results("SELECT *  FROM ".$table." WHERE bereich = 'Top'");
+		$functions = $wpdb->get_results("SELECT *  FROM ".sm_utilities::$table." WHERE bereich = 'Top'");
 		foreach($functions as $funcion) {
 			if($funcion->status == 0) { 
 				$wp_admin_bar->remove_node( $funcion->befehl );
