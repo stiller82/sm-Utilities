@@ -20,3 +20,8 @@
 .bknd_utilities_table tbody td:nth-child(3) {
     width: calc(100% - 400px);
 }
+
+.status_button {
+    border: none;
+    background-color: transparent;
+}
