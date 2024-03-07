@@ -3,13 +3,13 @@
     // Version 1.2
     
 	//$SaS = new \sm_utilities\StylesAndScripts();
-	//add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles(); });
+	//add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles("SHORT"); });
     class StylesAndScripts {
-        public static function enqueueFiles() {
-            wp_enqueue_style('style', plugin_dir_url(__FILE__) . 'style.css');
-            wp_enqueue_style('style_bknd', plugin_dir_url(__FILE__) . 'style_bknd.css');
-            wp_enqueue_script('script', plugin_dir_url(__FILE__) . 'script.js');
-            wp_enqueue_script('script_bknd', plugin_dir_url(__FILE__) . 'script_bknd.js');
+        public static function enqueueFiles($short) {
+            wp_enqueue_style($short.'style', plugin_dir_url(__FILE__) .''.$test. 'style.css');
+            wp_enqueue_style($short.'style_bknd', plugin_dir_url(__FILE__) . 'style_bknd.css');
+            wp_enqueue_script($short.'script', plugin_dir_url(__FILE__) . 'script.js');
+            wp_enqueue_script($short.'script_bknd', plugin_dir_url(__FILE__) . 'script_bknd.js');
         }
     }
 

@@ -6,17 +6,17 @@
     background-color: #ffffff;
 }
 
-.widefat thead th:nth-child(1),
-.widefat tbody td:nth-child(1) {
+.bknd_utilities_table thead th:nth-child(1),
+.bknd_utilities_table tbody td:nth-child(1) {
     width: 100px;
 }
 
-.widefat thead th:nth-child(2),
-.widefat tbody td:nth-child(2) {
+.bknd_utilities_table thead th:nth-child(2),
+.bknd_utilities_table tbody td:nth-child(2) {
     width: 300px;
 }
 
-.widefat thead th:nth-child(3),
-.widefat tbody td:nth-child(3) {
+.bknd_utilities_table thead th:nth-child(3),
+.bknd_utilities_table tbody td:nth-child(3) {
     width: calc(100% - 400px);
 }
