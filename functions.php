@@ -6,10 +6,10 @@
 	//add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles("SHORT"); });
     class StylesAndScripts {
         public static function enqueueFiles($short) {
-            wp_enqueue_style($short.'style', plugin_dir_url(__FILE__) .''.$test. 'style.css');
-            wp_enqueue_style($short.'style_bknd', plugin_dir_url(__FILE__) . 'style_bknd.css');
-            wp_enqueue_script($short.'script', plugin_dir_url(__FILE__) . 'script.js');
-            wp_enqueue_script($short.'script_bknd', plugin_dir_url(__FILE__) . 'script_bknd.js');
+            wp_enqueue_style($short.'style', plugin_dir_url(__FILE__) .'styles/style.css');
+            wp_enqueue_style($short.'style_bknd', plugin_dir_url(__FILE__) . 'styles/style_bknd.css');
+            wp_enqueue_script($short.'script', plugin_dir_url(__FILE__) . 'styles/script.js');
+            wp_enqueue_script($short.'script_bknd', plugin_dir_url(__FILE__) . 'styles/script_bknd.js');
         }
     }
 
