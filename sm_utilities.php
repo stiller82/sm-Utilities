@@ -36,6 +36,7 @@
 	add_action('init', array('sm_utilities', 'init'));
 
 	function sm_utilities_install() {
+		sm_utilities::init();
 		global $wpdb;
 
 		$sql = "CREATE TABLE IF NOT EXISTS ".sm_utilities::$table."(

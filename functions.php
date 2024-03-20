@@ -1,6 +1,6 @@
 <?php
     namespace sm_utilities;
-    // Version 1.2
+    // Version 1.21
     
 	//$SaS = new \sm_utilities\StylesAndScripts();
 	//add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles("SHORT"); });
