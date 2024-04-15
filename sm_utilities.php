@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Utilities
 	Description: Diverse Tools zum deaktivieren von Menüpunkten
-	Version: 1.61
+	Version: 1.62
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
 	*/
@@ -22,7 +22,7 @@
 		public static function init() {
 			global $wpdb;
 
-			self::$version = "1.6";
+			self::$version = "1.62";
 
 			$DL = new \sm_utilities\DataLoader();
 			self::$initDB = $DL->loadData('init_db');
@@ -68,7 +68,7 @@
 			'sm_utilities_plugin',
 				function() { include 'php/bknd_settings.php'; },
 			'dashicons-admin-tools',
-			'2'
+			'99'
 		);
 	}
 	add_action( 'admin_menu', 'sm_utilities_bkndMain' );
