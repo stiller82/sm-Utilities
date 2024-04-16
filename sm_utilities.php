@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Utilities
 	Description: Diverse Tools zum deaktivieren von Menüpunkten
-	Version: 1.62
+	Version: 1.7
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
 	*/
@@ -10,30 +10,29 @@
 	if ( !defined( 'WPINC' ) ) { die; }
 	error_reporting(0);
 
-	require_once(plugin_dir_path(__FILE__) . 'functions.php');
-
-	//Klasse zum erzeugen von Globalen Variablen
 	class sm_utilities {
 		public static $table;
-		public static $DL;
 		public static $initDB;
 		public static $version;
 
 		public static function init() {
 			global $wpdb;
 
-			self::$version = "1.62";
+			self::$version = "1.7";
 
-			$DL = new \sm_utilities\DataLoader();
-			self::$initDB = $DL->loadData('init_db');
+            $json_content = file_get_contents(plugin_dir_path(__FILE__) . 'data/init_db.json');
+            self::$initDB = json_decode($json_content, true);
 
 			self::$table = $wpdb->prefix . "sm_utilities";
-
-			$SaS = new \sm_utilities\StylesAndScripts();
-			add_action('admin_menu', function() use ($SaS) { $SaS->enqueueFiles("sm_utilities_"); });
 		}
 	}
 	add_action('init', array('sm_utilities', 'init'));
+	
+	function sm_utilities_admin_files(){
+		wp_enqueue_style( 'sm_utilities_style', plugin_dir_url(__FILE__) . 'styles/style_bknd.css');
+	}
+	add_action( 'admin_enqueue_scripts', 'sm_utilities_admin_files' );
+
 
 	function sm_utilities_install() {
 		sm_utilities::init();
