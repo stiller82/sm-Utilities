@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Utilities
 	Description: Diverse Tools zum deaktivieren von Menüpunkten
-	Version: 1.7
+	Version: 1.71
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
 	*/
@@ -28,11 +28,14 @@
 	}
 	add_action('init', array('sm_utilities', 'init'));
 	
+/******************************************************************************************************* */
+
 	function sm_utilities_admin_files(){
 		wp_enqueue_style( 'sm_utilities_style', plugin_dir_url(__FILE__) . 'styles/style_bknd.css');
 	}
 	add_action( 'admin_enqueue_scripts', 'sm_utilities_admin_files' );
 
+/******************************************************************************************************* */	
 
 	function sm_utilities_install() {
 		sm_utilities::init();
@@ -59,6 +62,8 @@
 	}
 	register_activation_hook(__FILE__, 'sm_utilities_install');
 
+/******************************************************************************************************* */
+
 	function sm_utilities_bkndMain() {
 		add_menu_page(
 			'Utilities',
@@ -71,6 +76,8 @@
 		);
 	}
 	add_action( 'admin_menu', 'sm_utilities_bkndMain' );
+
+/******************************************************************************************************* */
 
 	function sm_utilities_main() {
 		global $wpdb;
@@ -90,6 +97,8 @@
 	}
 	add_action('init', 'sm_utilities_main');
 
+/******************************************************************************************************* */
+
 	function sm_utilities_adminInit() {
 		global $wpdb;
 
@@ -101,6 +110,8 @@
 		}
 	}
 	add_action('admin_init', 'sm_utilities_adminInit');
+
+/******************************************************************************************************* */
 
 	function sm_utilities_adminBar() {
 		global $wp_admin_bar;

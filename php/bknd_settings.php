@@ -24,7 +24,7 @@
 <form action="#" method="post">
 
   <h2>Allgemein</h2>
-  <table class="widefat bknd_utilities_table">
+  <table class="bknd_tabell">
     <tbody>
     <?php
       foreach ($functions as $function) {
@@ -42,7 +42,7 @@
   </table>
 
   <h2>Admin Menü</h2>
-  <table class="widefat bknd_utilities_table ">
+  <table class="bknd_tabell">
     <tbody>
       <?php
         foreach ($functions as $function) {
@@ -60,7 +60,7 @@
   </table>
 
   <h2>Top Menü</h2>
-  <table class="widefat bknd_utilities_table">
+  <table class="bknd_tabell">
     <tbody>
       <?php
         foreach ($functions as $function) {

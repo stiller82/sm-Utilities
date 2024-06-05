@@ -1,24 +1,31 @@
-.widefat tbody tr:nth-child(even) {
+.bknd_tabell tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.widefat tbody tr:nth-child(odd) {
-    background-color: #ffffff;
+.bknd_tabell {
+    background-color: #fff;
+    width: 97%;
+    margin-top: 20px;
+    border: 1px solid gray;
 }
 
-.bknd_utilities_table thead th:nth-child(1),
-.bknd_utilities_table tbody td:nth-child(1) {
-    width: 100px;
+.bknd_tabell thead {
+    text-align: left;
+    background-color: #e6007e;
+    color: white;
+    height: 30px;
 }
 
-.bknd_utilities_table thead th:nth-child(2),
-.bknd_utilities_table tbody td:nth-child(2) {
+.bknd_tabell th, .bknd_tabell td {
+    padding: 8px 10px;
+}
+
+.bknd_tabell td:nth-child(1) {
+    width: 30px;
+}
+
+.bknd_tabell td:nth-child(2) {
     width: 300px;
-}
-
-.bknd_utilities_table thead th:nth-child(3),
-.bknd_utilities_table tbody td:nth-child(3) {
-    width: calc(100% - 400px);
 }
 
 .status_button {
