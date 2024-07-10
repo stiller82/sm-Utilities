@@ -4,7 +4,7 @@
   if($_POST["keyword_activate"]) {
       $data = array("status" => "1");
       $where = array("name" => $_POST["keyword_activate"]);
-      $wpdb->update(wp_utilities::$table, $data, $where);
+      $wpdb->update(sm_utilities::$table, $data, $where);
       
       echo "<meta http-equiv='refresh' content='0'>";
   }
@@ -12,12 +12,12 @@
   if($_POST["keyword_deactivate"]) {
       $data = array("status" => "0");
       $where = array("name" => $_POST["keyword_deactivate"]);
-      $wpdb->update(wp_utilities::$table, $data, $where);
+      $wpdb->update(sm_utilities::$table, $data, $where);
       
       echo "<meta http-equiv='refresh' content='0'>";
   }
 
-  $functions = $wpdb->get_results("SELECT *  FROM " . wp_utilities::$table);
+  $functions = $wpdb->get_results("SELECT *  FROM " . sm_utilities::$table);
 
   $bereiche = [
     ["Allgemein", "Allgemein"],
@@ -57,4 +57,4 @@
 
 </form>
 <hr>
-<p>Copyright by <a href="https://stillermedia.de">stiller media</a> &copy; 2024 | <?php echo "Version " . wp_utilities::$version; ?></p>
+<p>Copyright by <a href="https://stillermedia.de">stiller media</a> &copy; 2024 | <?php echo "Version " . sm_utilities::$version; ?></p>
