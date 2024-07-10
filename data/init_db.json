@@ -85,21 +85,21 @@
     },
     {
         "name": "TopNeu",
-        "beschreibung": "Neu erstellen im Top Menü anzeigen",
+        "beschreibung": "Neu erstellen im top Menü anzeigen",
         "status": 1,
         "befehl": "new-content",
         "bereich": "Top"
     },
     {
         "name": "TopKommentare",
-        "beschreibung": "Kommentare im Top Menü anzeigen",
+        "beschreibung": "Kommentare im top Menü anzeigen",
         "status": 1,
         "befehl": "comments",
         "bereich": "Top"
     },
     {
         "name": "TopName",
-        "beschreibung": "Seiten Namen im Tom Menü anzeigen",
+        "beschreibung": "Seiten Namen im top Menü anzeigen",
         "status": 1,
         "befehl": "site-name",
         "bereich": "Top"

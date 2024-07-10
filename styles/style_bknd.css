@@ -20,15 +20,17 @@
     padding: 8px 10px;
 }
 
+.status_button {
+    border: none;
+    background-color: transparent;
+}
+
+/******************************************************************************************************* */	
+
 .bknd_tabell td:nth-child(1) {
     width: 30px;
 }
 
 .bknd_tabell td:nth-child(2) {
     width: 300px;
-}
-
-.status_button {
-    border: none;
-    background-color: transparent;
 }
