@@ -1,7 +1,7 @@
 <?php
 	/*
 	Plugin Name: WP Utilities
-	Description: Plugin zum deaktivieren diverser Menüpunkte in Wordpress zur übersichtlicheren Gestaltung des Admin bereiches
+	Description: Plugin zum deaktivieren diverser Menüpunkte in Wordpress zur übersichtlicheren Gestaltung des Admin Bereiches
 	Version: 2.0
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
