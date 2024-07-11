@@ -1,53 +1,43 @@
 <?php
 	global $wpdb;
-  $sm_utilities_table = sm_utilities::$table;
+  $sm_utilities_table = $wpdb->prefix . "sm_utilities";
+
+  wp_cache_delete('sm_utilities_all');
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['sm_utilities_nonce_field']) || !wp_verify_nonce($_POST['sm_utilities_nonce_field'], 'sm_utilities_nonce')) {
-        die('Sicherheitsprüfung fehlgeschlagen.');
+      die('Sicherheitsprüfung fehlgeschlagen.');
     }
 
     $key_activate = sanitize_text_field($_POST["key_activate"]);
     $key_deactivate = sanitize_text_field($_POST["key_deactivate"]);
   }
 
-  if($key_activate) {
-      $data = array("status" => "1");
-      $where = array("name" => $key_activate);
+  if (!empty($key_activate)) {
+    $data = array("status" => "1");
+    $where = array("name" => $key_activate);
 
-      $cache_key = 'sm_utilities_' . $key_activate;
-      $cache_group = 'sm_utilities_group';
-
-      $wpdb->update($sm_utilities_table, $data, $where);
-
-      wp_cache_delete($cache_key, $cache_group);
-      
-      echo "<meta http-equiv='refresh' content='0'>";
+    $wpdb->update($sm_utilities_table, $data, $where);
+    
+    echo "<meta http-equiv='refresh' content='0'>";
   }
 
-  if($key_deactivate) {
-      $data = array("status" => "0");
-      $where = array("name" => $key_deactivate);
+  if (!empty($key_deactivate)) {
+    $data = array("status" => "0");
+    $where = array("name" => $key_deactivate);
 
-      $cache_key = 'sm_utilities_' . $key_activate;
-      $cache_group = 'sm_utilities_group';
-
-      $wpdb->update($sm_utilities_table, $data, $where);
-
-      wp_cache_delete($cache_key, $cache_group);
-      
-      echo "<meta http-equiv='refresh' content='0'>";
+    $wpdb->update($sm_utilities_table, $data, $where);
+    
+    echo "<meta http-equiv='refresh' content='0'>";
   }
 
-  $prepared_query = $wpdb->prepare("SELECT * FROM $sm_utilities_table");
-  $functions = $wpdb->get_results($prepared_query);
-
+  $functions = $wpdb->get_results("SELECT * FROM  ".$wpdb->prefix ."sm_utilities");
+  
   $bereiche = [
     ["Allgemein", "Allgemein"],
     ["Admin Menü", "Menü"],
     ["Top Menü", "Top"]
   ];
-
 ?>
 
 <h1>Utilities</h1>
@@ -82,4 +72,4 @@
 
 </form>
 <hr>
-<p>Copyright by <a href="https://stillermedia.de">stiller media</a> &copy; 2024 | <?php echo "Version " . esc_html(sm_utilities::$version); ?></p>
+<p>Copyright by <a href="https://stillermedia.de">stiller media</a> &copy; 2024 | Version 2.0</p>

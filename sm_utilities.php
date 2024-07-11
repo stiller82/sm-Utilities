@@ -9,24 +9,6 @@
 
 	if ( !defined( 'WPINC' ) ) { die; }
 	error_reporting(0);
-
-	class sm_utilities {
-		public static $table;
-		public static $initDB;
-		public static $version;
-
-		public static function init() {
-			global $wpdb;
-
-			self::$version = "2.0";
-
-            $json_content = file_get_contents(plugin_dir_path(__FILE__) . 'data/init_db.json');
-            self::$initDB = json_decode($json_content, true);
-
-			self::$table = $wpdb->prefix . "sm_utilities";
-		}
-	}
-	add_action('init', array('sm_utilities', 'init'));
 	
 /******************************************************************************************************* */
 
@@ -39,10 +21,13 @@
 /******************************************************************************************************* */	
 
 	function sm_utilities_install() {
-		sm_utilities::init();
 		global $wpdb;
+		$sm_utilities_table = $wpdb->prefix . "sm_utilities";
 
-		$sql = "CREATE TABLE IF NOT EXISTS ".sm_utilities::$table."(
+		$initDB_file = file_get_contents(plugin_dir_path(__FILE__) . 'data/init_db.json');
+		$initDB = json_decode($initDB_file, true);
+
+		$sql = "CREATE TABLE IF NOT EXISTS $sm_utilities_table (
 			`id` int(11) NOT NULL AUTO_INCREMENT,
 			`name` varchar(255) NOT NULL,
 			`beschreibung` varchar(255) NOT NULL,
@@ -54,10 +39,11 @@
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
 
-		$wpdb->get_results("SELECT *  FROM ".sm_utilities::$table);
+		$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."sm_utilities");
+		
 		if(!$wpdb->num_rows) {
-			foreach(sm_utilities::$initDB as $row){ 
-				$wpdb->insert(sm_utilities::$table, $row); 
+			foreach($initDB as $row){ 
+				$wpdb->insert($sm_utilities_table, $row); 
 			}
 		}
 	}
@@ -82,8 +68,9 @@
 
 	function sm_utilities_initFunctions() {
 		global $wpdb;
-		
-		$functions = $wpdb->get_results("SELECT *  FROM ".sm_utilities::$table." WHERE bereich = 'Allgemein'");
+
+		$functions = $wpdb->get_results("SELECT *  FROM ".$wpdb->prefix."sm_utilities WHERE bereich = 'Allgemein'");
+
 		foreach($functions as $funcion) {
 			if($funcion->name == "UpdateMail" && $funcion->status == 0 ) {
 				add_filter( 'auto_plugin_update_send_email', '__return_false' );
@@ -103,7 +90,8 @@
 	function sm_utilities_viewMenuSide() {
 		global $wpdb;
 
-		$functions = $wpdb->get_results("SELECT *  FROM ".sm_utilities::$table." WHERE bereich = 'Menü'");
+		$functions = $wpdb->get_results("SELECT *  FROM ".$wpdb->prefix."sm_utilities WHERE bereich = 'Menü'");
+
 		foreach($functions as $funcion) {
 			if($funcion->status == 0) { 
 				remove_menu_page($funcion->befehl); 
@@ -118,7 +106,7 @@
 		global $wp_admin_bar;
 		global $wpdb;
 
-		$functions = $wpdb->get_results("SELECT *  FROM ".sm_utilities::$table." WHERE bereich = 'Top'");
+		$functions = $wpdb->get_results("SELECT *  FROM ".$wpdb->prefix."sm_utilities WHERE bereich = 'Top'");
 		foreach($functions as $funcion) {
 			if($funcion->status == 0) { 
 				$wp_admin_bar->remove_node( $funcion->befehl );
