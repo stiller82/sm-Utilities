@@ -2,6 +2,9 @@
 	global $wpdb;
   $sm_utilities_table = $wpdb->prefix . "sm_utilities";
 
+  $cache_key = 'sm_utilities_all';
+  $cache_group = 'sm_utilities_group';
+
   wp_cache_delete('sm_utilities_all');
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,7 +21,7 @@
     $where = array("name" => $key_activate);
 
     $wpdb->update($sm_utilities_table, $data, $where);
-    
+    wp_cache_delete($cache_key, $cache_group);
     echo "<meta http-equiv='refresh' content='0'>";
   }
 
@@ -27,11 +30,15 @@
     $where = array("name" => $key_deactivate);
 
     $wpdb->update($sm_utilities_table, $data, $where);
-    
+    wp_cache_delete($cache_key, $cache_group);
     echo "<meta http-equiv='refresh' content='0'>";
   }
 
-  $functions = $wpdb->get_results("SELECT * FROM  ".$wpdb->prefix ."sm_utilities");
+  $functions = wp_cache_get($cache_key, $cache_group);
+  if (false === $functions) {
+    $functions = $wpdb->get_results("SELECT * FROM  ".$wpdb->prefix ."sm_utilities");
+    wp_cache_set($cache_key, $functions, $cache_group, 3600);
+  }
   
   $bereiche = [
     ["Allgemein", "Allgemein"],
