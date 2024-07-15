@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: SM Utilities
 	Description: Plugin zum deaktivieren diverser Menüpunkte in Wordpress zur übersichtlicheren Gestaltung des Admin Bereiches
-	Version: 2.0
+	Version: 2.01
 	Author: Stefan Stiller | stiller media
 	Author URI: https://www.stillermedia.de/
 	*/
