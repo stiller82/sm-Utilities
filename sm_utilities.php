@@ -1,14 +1,14 @@
 <?php
-	/*
-	Plugin Name: SM Utilities
-	Description: Plugin zum deaktivieren diverser Menüpunkte in Wordpress zur übersichtlicheren Gestaltung des Admin Bereiches
-	Version: 2.01
-	Author: Stefan Stiller | stiller media
-	Author URI: https://www.stillermedia.de/
-	*/
+/*
+Plugin Name: SM Utilities
+Description: Plugin zum deaktivieren diverser Menüpunkte in Wordpress zur übersichtlicheren Gestaltung des Admin Bereiches
+Version: 2.02
+Author: Stefan Stiller | stiller media
+Author URI: https://www.stillermedia.de/
+*/
 
-	if ( !defined( 'WPINC' ) ) { die; }
-	error_reporting(0);
+if ( ! defined( 'ABSPATH' ) ) {	exit; }
+error_reporting(0);
 	
 /******************************************************************************************************* */
 
