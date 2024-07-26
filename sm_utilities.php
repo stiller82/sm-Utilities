@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: SM Utilities
-Description: Plugin to deactivate various menu items in Wordpress for a clearer design of the admin area
-Version: 2.1
+Description: Plugin to deactivate various menu items in Wordpress for a clearer design of the admin area. | Support me at <a href="https://ko-fi.com/stillermedia">https://ko-fi.com/stillermedia</a>
+Version: 2.11
 Author: Stefan Stiller | stiller media
 Author URI: https://www.stillermedia.de/
 */
