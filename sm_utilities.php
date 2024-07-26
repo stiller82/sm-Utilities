@@ -1,24 +1,26 @@
 <?php
 /*
 Plugin Name: SM Utilities
-Description: Plugin zum deaktivieren diverser Menüpunkte in Wordpress zur übersichtlicheren Gestaltung des Admin Bereiches
-Version: 2.02
+Description: Plugin to deactivate various menu items in Wordpress for a clearer design of the admin area
+Version: 2.1
 Author: Stefan Stiller | stiller media
 Author URI: https://www.stillermedia.de/
 */
 
 if ( ! defined( 'ABSPATH' ) ) {	exit; }
 error_reporting(0);
+
+$GLOBALS["Version"] = "2.1";
 	
-/******************************************************************************************************* */
+/* Style Admin Files ****************************************************************************************************** */
 
 	function sm_utilities_admFiles(){
-		$version = filemtime( plugin_dir_url(__FILE__) . 'styles/style_bknd.css');
-		wp_enqueue_style('my-style',  plugin_dir_url(__FILE__) . 'styles/style_bknd.css', array(), $version);
+		$version = filemtime( plugin_dir_url(__FILE__) . 'styles/style_admin.css');
+		wp_enqueue_style('my-style',  plugin_dir_url(__FILE__) . 'styles/style_admin.css', array(), $version);
 	}
 	add_action( 'admin_enqueue_scripts', 'sm_utilities_admFiles' );
 
-/******************************************************************************************************* */	
+/* Init ****************************************************************************************************** */	
 
 	function sm_utilities_install() {
 		global $wpdb;
@@ -49,7 +51,7 @@ error_reporting(0);
 	}
 	register_activation_hook(__FILE__, 'sm_utilities_install');
 
-/******************************************************************************************************* */
+/* Admin Menu ****************************************************************************************************** */
 
 	function sm_utilities_admMainMenu() {
 		add_menu_page(
@@ -57,14 +59,14 @@ error_reporting(0);
 			'SM Utilities',
 			'manage_options',
 			'sm_utilities_plugin',
-				function() { include 'php/bknd_settings.php'; },
+				function() { include 'php_admin/settings.php'; },
 			'dashicons-admin-tools',
 			'99'
 		);
 	}
 	add_action( 'admin_menu', 'sm_utilities_admMainMenu' );
 
-/******************************************************************************************************* */
+/* Function Remove Functions ****************************************************************************************************** */
 
 	function sm_utilities_initFunctions() {
 		global $wpdb;
@@ -85,7 +87,7 @@ error_reporting(0);
 	}
 	add_action('init', 'sm_utilities_initFunctions');
 
-/******************************************************************************************************* */
+/* Function Remove Pages ****************************************************************************************************** */
 
 	function sm_utilities_viewMenuSide() {
 		global $wpdb;
@@ -100,7 +102,7 @@ error_reporting(0);
 	}
 	add_action('admin_init', 'sm_utilities_viewMenuSide');
 
-/******************************************************************************************************* */
+/* Function Remove Nodes ****************************************************************************************************** */
 
 	function sm_utilities_viewMenuBar() {
 		global $wp_admin_bar;

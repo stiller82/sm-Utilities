@@ -1,105 +1,105 @@
 [
     {
         "name": "Gutenberg",
-        "beschreibung": "Gutenberg Editor deaktivieren",
+        "beschreibung": "Gutenberg Editor deactivate ",
         "status": 1,
         "befehl": "",
         "bereich": "Allgemein"
     },
     {
-        "name": "UpdateMail",
-        "beschreibung": "Update Mails deaktivieren",
+        "name": "Update Mails",
+        "beschreibung": "Update Mails deactivate ",
         "status": 1,
         "befehl": "",
         "bereich": "Allgemein"
     },
     {
-        "name": "Beiträge",
-        "beschreibung": "Beiträge anzeigen",
+        "name": "Posts",
+        "beschreibung": "Show posts",
         "status": 1,
         "befehl": "edit.php",
         "bereich": "Menü"
     },
     {
-        "name": "Medien",
-        "beschreibung": "Medien anzeigen",
+        "name": "Media",
+        "beschreibung": "Show media",
         "status": 1,
         "befehl": "upload.php",
         "bereich": "Menü"
     },
     {
-        "name": "Seiten",
-        "beschreibung": "Seiten anzeigen",
+        "name": "Pages",
+        "beschreibung": "Show pages",
         "status": 1,
         "befehl": "edit.php?post_type=page",
         "bereich": "Menü"
     },
     {
         "name": "Themes",
-        "beschreibung": "Themes anzeigen",
+        "beschreibung": "Show Themes",
         "status": 1,
         "befehl": "themes.php",
         "bereich": "Menü"
     },
     {
         "name": "Plugins",
-        "beschreibung": "Plugins anzeigen",
+        "beschreibung": "Show Plugins",
         "status": 1,
         "befehl": "plugins.php",
         "bereich": "Menü"
     },
     {
-        "name": "User",
-        "beschreibung": "Benutzer anzeigen",
+        "name": "Users",
+        "beschreibung": "Show Users",
         "status": 1,
         "befehl": "users.php",
         "bereich": "Menü"
     },
     {
-        "name": "Werkzeuge",
-        "beschreibung": "Werkzeuge anzeigen",
+        "name": "Tools",
+        "beschreibung": "Show tools",
         "status": 1,
         "befehl": "tools.php",
         "bereich": "Menü"
     },
     {
-        "name": "Kommentare",
-        "beschreibung": "Kommentare anzeigen",
+        "name": "Comments",
+        "beschreibung": "Show comments",
         "status": 1,
         "befehl": "edit-comments.php",
         "bereich": "Menü"
     },
     {
-        "name": "Einstellungen",
-        "beschreibung": "Einstellungen anzeigen",
+        "name": "Settings",
+        "beschreibung": "Show settings",
         "status": 1,
         "befehl": "options-general.php",
         "bereich": "Menü"
     },
     {
         "name": "Logo",
-        "beschreibung": "Wordpress Logo anzeigen",
+        "beschreibung": "Show logo",
         "status": 1,
         "befehl": "wp-logo",
         "bereich": "Top"
     },
     {
-        "name": "TopNeu",
-        "beschreibung": "Neu erstellen im top Menü anzeigen",
+        "name": "Top New",
+        "beschreibung": "Show create new in top menu",
         "status": 1,
         "befehl": "new-content",
         "bereich": "Top"
     },
     {
-        "name": "TopKommentare",
-        "beschreibung": "Kommentare im top Menü anzeigen",
+        "name": "Top Comments",
+        "beschreibung": "Show comments in top menu",
         "status": 1,
         "befehl": "comments",
         "bereich": "Top"
     },
     {
-        "name": "TopName",
-        "beschreibung": "Seiten Namen im top Menü anzeigen",
+        "name": "Top Name",
+        "beschreibung": "Show page names in top menu",
         "status": 1,
         "befehl": "site-name",
         "bereich": "Top"
